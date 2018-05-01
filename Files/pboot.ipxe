@@ -1,0 +1,89 @@
+#!ipxe
+
+:start
+goto menu
+goto win_exit
+
+:menu
+clear choice
+menu Install/Live Windows or Extensive NetBoot.xyz Menu
+item --gap Windows Options
+item live ${space} Boot Windows 10 PE Live
+item installation ${space} Install Windows 10
+item --gap Additional Operating Systems and Tools
+item netb ${space} Load NetBoot.xyz Menu
+item --gap Debugging
+item ishell ${space} Load iPXE Shell
+choose --timeout 15000 --default ${menu} choice || goto live
+echo ${cls}
+goto ${choice}
+
+:live
+echo
+echo -n Looking for Windows 10 PE LIVE startup files...
+sleep 1
+echo
+echo
+kernel Win10PE/wimboot
+initrd Win10PE/bootmgr bootmgr
+initrd Win10PE/Boot/BCD BCD
+initrd Win10PE/Boot/boot.sdi boot.sdi
+initrd Win10PE/Sources/boot.wim boot.wim
+boot || goto fail
+goto win_exit
+
+:installation
+echo
+echo -n Looking for Windows 10 INSTALL startup files...
+sleep 1
+echo
+echo
+kernel Win10/wimboot
+initrd Win10/bootmgr bootmgr
+initrd Win10/boot/bcd bcd
+initrd Win10/boot/boot.sdi boot.sdi
+initrd Win10/sources/boot.wim boot.wim
+boot || goto fail
+goto win_exit
+
+:netb
+echo
+echo -n Switching over to NetBoot.xyz...
+sleep 1
+echo
+echo
+set version 1.04
+clear arch
+chain http://boot.netboot.xyz/ipxe/netboot.xyz-undionly.kpxe || goto fail_netb
+goto win_exit
+
+:ishell
+echo Loading iPXE Shell...
+echo To end, type "exit".
+shell
+goto menu
+
+:fail
+echo
+echo -n Execution unsuccessful.
+sleep 3
+echo
+echo
+goto win_exit
+
+:fail_netb
+echo
+echo
+echo Cannot reach NetBoot.xyz...
+echo -n Switching over to Main Menu
+sleep 1
+echo -n .
+sleep 1
+echo -n .
+sleep 1
+echo -n .
+sleep 1
+goto menu
+
+:win_exit
+exit 0
