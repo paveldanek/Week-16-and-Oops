@@ -1,5 +1,5 @@
 # Oops/Sl@ckers
-## Week 16, iPXE Menu Update and **NetBoot.xyz** Integration.
+## Week 16, iPXE Menu Update and NetBoot.xyz Integration.
 ### Pavel Danek
 
 Hello to all of my Linux 2018 class!
@@ -16,16 +16,20 @@ My only chance would be to take the whole Messerli's script (which I understand 
 And so the final result before handing it over to Lucas is this:
 
 After booting with iPXE, the first screen goes to the Windows/NetBoot Menu:
-[Pic#1](Files/IMG_0001.JPG)
+![Pic#1](Files/IMG_0001.JPG)
 
 The next screen after choosing "Load NetBoot.xyz Menu":
-[Pic#2](Files/IMG_0002.JPG)
+![Pic#2](Files/IMG_0002.JPG)
 
 The final screen, after loading NetBoot.xyz:
-[Pic#3](Files/IMG_0003.JPG)
+![Pic#3](Files/IMG_0003.JPG)
 
 That's it for today!
 
+
+
 "Thank you very much, thank you very much!"
-~~-Elvis~~
+
+~~-Elvis ~~
+
 -Pavel.
