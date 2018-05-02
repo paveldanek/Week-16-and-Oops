@@ -30,6 +30,6 @@ That's it for today!
 
 "Thank you very much, thank you very much!"
 
-~~ Elvis ~~
+~~Elvis~~
 
 -Pavel.
